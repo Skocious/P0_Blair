@@ -1,5 +1,4 @@
-from abc import ABC
-
+from abc import ABC, abstractmethod
 from entities.account_class_info import Account
 
 
@@ -24,3 +23,14 @@ class AccountDAOInterface(ABC):
     @abstractmethod
     def delete_account_by_id(self, account_id: int) -> bool:
         pass
+
+
+"""
+    # - added to get all accounts as list - *import list*
+    @abstractmethod
+    def get_all_account_balances_by_customer_id(self): -> List[Account]:
+        pass
+"""
+
+
+

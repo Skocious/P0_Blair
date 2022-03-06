@@ -3,7 +3,7 @@ from dal_layer.customer_dal.customer_dao_interface import CustomerDAOInterface
 from entities.customer_class_info import Customer
 
 
-class CustomerDAOImp(CustomerDAOInterface, ABC):
+class CustomerDAOImp(CustomerDAOInterface):
 
     def __init__(self):
         customer_id_catch = Customer(1, "William", "Blair")
@@ -15,6 +15,7 @@ class CustomerDAOImp(CustomerDAOInterface, ABC):
         customer.customer_id = self.customer_id_generator
         self.customer_id_generator += 1
         self.customers_list.append(customer)
+        return customer
 
     def get_customer_by_id(self, customer_id: int) -> Customer:
         for customer in self.customers_list:

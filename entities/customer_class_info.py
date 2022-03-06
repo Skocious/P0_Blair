@@ -5,6 +5,7 @@ class Customer:
         self.last_name = last_name
 
 
+
 """
 Customers:
     -First and last names must not exceed 20 char

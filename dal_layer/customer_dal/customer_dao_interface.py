@@ -20,7 +20,7 @@ class CustomerDAOInterface(ABC):
     def update_customer_info_by_id(self, customer: Customer) -> Customer:
         pass
 
-    # delete - will be used to delete customer account info from database - check for != 0 balance
+    # delete - will be used to delete customer account info from database - check account for != 0 balance
     @abstractmethod
     def delete_customer_by_id(self, customer_id: int) -> bool:
         pass
