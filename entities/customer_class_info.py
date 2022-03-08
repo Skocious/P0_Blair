@@ -1,13 +1,15 @@
 class Customer:
-    def __init__(self, customer_id: int, first_name: str, last_name: str):
+
+    def __init__(self, customer_id, first_name, last_name):
         self.customer_id = customer_id
         self.first_name = first_name
         self.last_name = last_name
+        #self.customer_info = f"Customer Info: {first_name}, {last_name}, Customer ID#:{customer_id}"
+
+    #def cust_json_dictionary(self):
+     #   return {"Customer Info": self.customer_info,
+      #          "FirstName": self.first_name,
+       #         "LastName": self.last_name,
+        #        "CustomerID": self.customer_id}
 
 
-
-"""
-Customers:
-    -First and last names must not exceed 20 char
-    -Must have unique_id==customer_id
-"""

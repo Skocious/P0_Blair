@@ -1,11 +1,15 @@
+# from abc import ABC
+# from typing import List
+
+from entities.account_class_info import Account
 from custom_exceptions.id_not_found import IdNotFound
 from dal_layer.account_dal.account_dao_interface import AccountDAOInterface
-from entities.account_class_info import Account
 
 
 class AccountDAOImp(AccountDAOInterface):
     account_list = [Account(1, 0, 1)]
     account_id_gen = 2
+    # account_dict = {}
 
     # create - will be used to create a new account and add it to database
     def create_account(self, account: Account) -> Account:
@@ -21,6 +25,10 @@ class AccountDAOImp(AccountDAOInterface):
                 return account
         raise IdNotFound("Account not found, please try again!")
 
+    # def get_all_accounts(self) -> List[Account]:
+    #    account_list = list(AccountDAOImp.account_dict.values())
+    #    return account_list
+
     # update - will be used to update account information in database via account_id
     def update_account_info_by_id(self, account: Account) -> Account:
         for old_account_info in self.account_list:
@@ -29,8 +37,8 @@ class AccountDAOImp(AccountDAOInterface):
                 return old_account_info
         raise IdNotFound("Account not found, please try again!")
 
-    # delete - will be used to delete account from database - check for != 0 balance
-    def delete_account_by_id(self, account_id: int) -> bool:   # set to 0 or str?
+    # delete - will be used to delete account from database
+    def delete_account_by_id(self, account_id: int) -> bool:
         for account in self.account_list:
             if account.account_id == account_id:
                 self.account_list.remove(account)

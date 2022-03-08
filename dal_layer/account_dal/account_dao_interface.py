@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from entities.account_class_info import Account
+# from typing import List
 
 
 class AccountDAOInterface(ABC):
@@ -14,6 +15,10 @@ class AccountDAOInterface(ABC):
     def get_account_by_id(self, account_id: int) -> Account:
         pass
 
+    # @abstractmethod
+    # def get_all_accounts(self) -> List[Account]:
+    #    pass
+
     # update - will be used to update account information in database via account_id
     @abstractmethod
     def update_account_info_by_id(self, account: Account) -> Account:
@@ -23,14 +28,5 @@ class AccountDAOInterface(ABC):
     @abstractmethod
     def delete_account_by_id(self, account_id: int) -> bool:
         pass
-
-
-"""
-    # - added to get all accounts as list - *import list*
-    @abstractmethod
-    def get_all_account_balances_by_customer_id(self): -> List[Account]:
-        pass
-"""
-
 
 

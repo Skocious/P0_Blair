@@ -1,9 +1,10 @@
 from custom_exceptions.id_not_found import IdNotFound
 from dal_layer.account_dal.account_dao_imp import AccountDAOImp
+from dal_layer.customer_dal.customer_dao_imp import CustomerDAOImp
 from entities.account_class_info import Account
 
 account_dao = AccountDAOImp()
-
+customer_dao = CustomerDAOImp()
 
 
 """
@@ -81,7 +82,7 @@ Delete account test
 def test_delete_account_by_id_success():
     try:
         account_dao.delete_account_by_id(1)
-        assert False
+        assert True
     except IdNotFound as e:
         assert str(e) == "Account not found, please try again!"
 
@@ -93,8 +94,16 @@ def test_delete_account_by_id_non_existent():
     except IdNotFound as e:
         assert str(e) == "Account not found, please try again!"
 
-
-
+# Project Requirements
+"""
+def test_get_all_accounts_by_customer_id():
+    try:
+        outcome = customer_dao.get_customer_by_id()
+        assert outcome.customer_id == account_dao.get_account_by_id(1)
+        print(outcome)
+    except IdNotFound as e:
+        assert str(e) == "Account not found, please try again!"
+"""
 
 
 

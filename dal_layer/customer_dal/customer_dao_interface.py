@@ -1,4 +1,3 @@
-# CRUD operations here
 from abc import ABC, abstractmethod
 from entities.customer_class_info import Customer
 
@@ -12,7 +11,7 @@ class CustomerDAOInterface(ABC):
 
     # read - will be used to retrieve customer data via customer_id from database
     @abstractmethod
-    def get_customer_by_id(self, customer_id: int) -> Customer:
+    def get_customer_by_id(self, customer_id) -> Customer:
         pass
 
     # update - will be used to update customer information in database via customer_id
@@ -22,5 +21,7 @@ class CustomerDAOInterface(ABC):
 
     # delete - will be used to delete customer account info from database - check account for != 0 balance
     @abstractmethod
-    def delete_customer_by_id(self, customer_id: int) -> bool:
+    def delete_customer_by_id(self, customer_id) -> bool:
         pass
+
+
