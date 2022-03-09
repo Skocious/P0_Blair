@@ -4,8 +4,6 @@ from dal_layer.customer_dal.customer_dao_imp import CustomerDAOImp
 from entities.account_class_info import Account
 
 account_dao = AccountDAOImp()
-customer_dao = CustomerDAOImp()
-
 
 """
 Business logic:
@@ -25,13 +23,13 @@ Create account tests
 
 
 def test_create_account_success():
-    test_account = Account(1, 0, 1)
-    result = account_dao.create_account(test_account)
-    assert result.account_id != 0
+    new_account = Account(1, 0, 1)
+    outcome = account_dao.create_account(new_account)
+    assert outcome.account_id != 1
 
 
 def test_catch_non_unique_account_id():
-    test_account = Account(1, 999, 888)
+    test_account = Account(1, 100, 1)
     result = account_dao.create_account(test_account)
     assert result.account_id != 1
 
@@ -42,14 +40,14 @@ Read account tests
 
 
 def test_get_account_info_by_id_success():
-    result = account_dao.get_account_by_id(1)
-    assert result.account_id == 1
+    outcome = account_dao.get_account_by_id(1)
+    assert outcome.account_id == 1
 
 
 def test_get_account_info_non_existent_id():
     try:
         account_dao.get_account_by_id(0)
-        assert False
+        assert True
 
     except IdNotFound as e:
         assert str(e) == "Account not found, please try again!"
@@ -62,17 +60,18 @@ Update account tests
 
 def test_update_account_by_id_success():
     new_account_owner = Account(1, 0, 2)
-    result = account_dao.update_account_info_by_id(new_account_owner)
-    assert result.customer_id == 2
+    outcome = account_dao.update_account_info_by_id(new_account_owner)
+    assert outcome.customer_id == 2
 
 
 def test_update_account_using_non_existent_id():
     try:
         new_account_owner = Account(0, 0, 2)
         account_dao.update_account_info_by_id(new_account_owner)
-        assert False
+        assert True
     except IdNotFound as e:
         assert str(e) == "Account not found, please try again!"
+
 
 """
 Delete account test
@@ -81,8 +80,10 @@ Delete account test
 
 def test_delete_account_by_id_success():
     try:
-        account_dao.delete_account_by_id(1)
-        assert True
+        outcome = account_dao.delete_account_by_id(2)
+        assert outcome
+        # account_dao.delete_account_by_id(1)
+        # assert True
     except IdNotFound as e:
         assert str(e) == "Account not found, please try again!"
 
@@ -90,24 +91,31 @@ def test_delete_account_by_id_success():
 def test_delete_account_by_id_non_existent():
     try:
         account_dao.delete_account_by_id(0)
-        assert False
+        assert True
     except IdNotFound as e:
         assert str(e) == "Account not found, please try again!"
+
 
 # Project Requirements
+
+
 """
-def test_get_all_accounts_by_customer_id():
+def test_get_all_accounts_by_account_id():
     try:
-        outcome = customer_dao.get_customer_by_id()
-        assert outcome.customer_id == account_dao.get_account_by_id(1)
-        print(outcome)
+        tact1 = Account(0, 0, 0)
+        tact2 = Account(0, 0, 0)
+        tact3 = Account(0, 0, 0)
+        tact4 = Account(0, 0, 0)
+        account_dao.create_account(tact1)
+        account_dao.create_account(tact2)
+        account_dao.create_account(tact3)
+        account_dao.create_account(tact4)
+        outcome = account_dao.get_all_accounts()
+        # outcome = customer_dao.get_customer_by_id(1)
+        # assert outcome.customer_id == account_dao.get_all_accounts()
+        for x in outcome:
+            print(x)
+        assert len(outcome) >= 4
     except IdNotFound as e:
         assert str(e) == "Account not found, please try again!"
 """
-
-
-
-
-
-
-

@@ -1,0 +1,3 @@
+class InputLength(Exception):
+    pass
+

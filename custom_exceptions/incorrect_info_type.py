@@ -1,0 +1,2 @@
+class IncorrectInfoType(Exception):
+    pass

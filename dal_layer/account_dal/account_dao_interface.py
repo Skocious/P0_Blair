@@ -1,5 +1,7 @@
 from abc import ABC, abstractmethod
 from entities.account_class_info import Account
+
+
 # from typing import List
 
 
@@ -28,5 +30,3 @@ class AccountDAOInterface(ABC):
     @abstractmethod
     def delete_account_by_id(self, account_id: int) -> bool:
         pass
-
-

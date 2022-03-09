@@ -11,7 +11,7 @@ class CustomerDAOInterface(ABC):
 
     # read - will be used to retrieve customer data via customer_id from database
     @abstractmethod
-    def get_customer_by_id(self, customer_id) -> Customer:
+    def get_customer_by_id(self, customer_id: int) -> Customer:
         pass
 
     # update - will be used to update customer information in database via customer_id
@@ -21,7 +21,5 @@ class CustomerDAOInterface(ABC):
 
     # delete - will be used to delete customer account info from database - check account for != 0 balance
     @abstractmethod
-    def delete_customer_by_id(self, customer_id) -> bool:
+    def delete_customer_by_id(self, customer_id: int) -> bool:
         pass
-
-
