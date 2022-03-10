@@ -1,27 +1,35 @@
 from flask import Flask, request, jsonify
-
+from custom_exceptions.bad_cust_info import BadCustomerInfo
+from custom_exceptions.id_not_found import IdNotFound
+from dal_layer.account_dal.account_dao_imp import AccountDAOImp
 from dal_layer.customer_dal.customer_dao_imp import CustomerDAOImp
 from entities.customer_class_info import Customer
+from service_layer.account_services.account_service_imp import AccountServiceImp
+from service_layer.account_services.account_service_interface import AccountService
+from service_layer.customer_services.customer_service_imp import CustomerServiceImp
 
 app: Flask = Flask(__name__)  # passing __name__ as an argument lets the object know it should look fir its info
+
 customer_dao = CustomerDAOImp()
-customer_Service = CustomerServiceImp(customer_dao)
+customer_service = CustomerServiceImp(customer_dao)
+account_dao = AccountDAOImp()
+account_service = AccountServiceImp(account_dao)
 
 
-@app.route("/customer", methods=["GET"])
+@app.route("/customer", methods=["POST"])
 def create_customer():
     try:
         custd: dict = request.get_json()
         customer = Customer(custd["customer_id"], custd["first_name"], custd["last_name"])
-        outcome = customer_Service.service_create_customer(customer)
-        outcome_dict = outcome.dict_conv()
+        outcome = customer_service.service_new_customer(customer)
+        outcome_dict = outcome.cust_json_dictionary()
         outcome_json = jsonify(outcome_dict)
         return outcome_json, 201
-    except BadCustInfo as e:
-        emsg = {"emsg": str(e)}
+    except BadCustomerInfo as e:
+        mssg = {"emsg": str(e)}
         return jsonify(mssg), 400
     except IdNotFound as e:
-        emsg = {"emsg": str(e)}
+        mssg = {"emsg": str(e)}
         return jsonify(mssg), 400
 
 

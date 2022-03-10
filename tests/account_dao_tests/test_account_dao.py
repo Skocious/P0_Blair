@@ -99,7 +99,6 @@ def test_delete_account_by_id_non_existent():
 # Project Requirements
 
 
-"""
 def test_get_all_accounts_by_account_id():
     try:
         tact1 = Account(0, 0, 0)
@@ -111,11 +110,6 @@ def test_get_all_accounts_by_account_id():
         account_dao.create_account(tact3)
         account_dao.create_account(tact4)
         outcome = account_dao.get_all_accounts()
-        # outcome = customer_dao.get_customer_by_id(1)
-        # assert outcome.customer_id == account_dao.get_all_accounts()
-        for x in outcome:
-            print(x)
         assert len(outcome) >= 4
     except IdNotFound as e:
         assert str(e) == "Account not found, please try again!"
-"""

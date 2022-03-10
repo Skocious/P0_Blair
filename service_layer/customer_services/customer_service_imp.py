@@ -21,9 +21,6 @@ class CustomerServiceImp(CustomerService):
             raise InputLength("Your name is wayyyy to long, <20.")
         elif len(customer.last_name) >= 21:
             raise InputLength("Your name is wayyyy to long, <20.")
-        # for current_customer in self.customer_dobj.customers_list:
-        #   if current_customer.customer_id == customer.customer_id:
-        #      raise DuplicateInfoType("Customer ID already exists.")
         return self.customer_dobj.create_customer(customer)
 
     def service_get_customer_by_id(self, customer_id):

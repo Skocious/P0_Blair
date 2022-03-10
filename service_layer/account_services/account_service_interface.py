@@ -1,34 +1,38 @@
 from abc import ABC, abstractmethod
 from entities.account_class_info import Account
-from entities.customer_class_info import
 
 
-class CustomerService(ABC):
+class AccountService(ABC):
 
     @abstractmethod
-    def add_new_account(self, account: Account) -> Account:
+    def service_add_new_account(self, account: Account) -> Account:
         pass
 
     @abstractmethod
-    def get_account_by_id(self, account_id): ->
+    def service_get_account_by_id(self, account_id) -> Account:
+        pass
 
-    Account:
-    pass
+    @abstractmethod
+    def service_get_all_accounts_cust_id(self, account: Account) -> Account:
+        pass
 
+    @abstractmethod
+    def service_update_account(self, account: Account) -> Account:
+        pass
 
-@abstractmethod
-def get_all_accounts_by_cid(self, account_id, customer_id):
-    pass
+    @abstractmethod
+    def service_remove_account(self, account: Account) -> bool:
+        pass
 
+    @abstractmethod
+    def service_withdraw_from_account(self, withdraw_amt: int, account_id) -> Account:
+        pass
 
-@abstractmethod
-def update_account(self, account: Account) -> Account:
-    pass
+    @abstractmethod
+    def service_deposit_to_account(self, account_id, deposit_amt) -> Account:
+        pass
 
+    @abstractmethod
+    def service_transfer_between_accounts(self, customer_id, transfer_from_acct, deposit_to_acct, transfer_amt) -> bool:
+        pass
 
-@abstractmethod
-def remove_account(self, account_id): ->
-
-
-Account:
-pass
