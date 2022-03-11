@@ -53,6 +53,7 @@ def test_deposit_to_account():
     except IdNotFound:
         assert IdNotFound("Account not found, please try again!")
 
+
 def test_remove_account_by_id():
     try:
         acct = account_daoj.delete_account_by_id(2)
@@ -73,4 +74,15 @@ def test_withdraw_from_account():
     except ValueError:
         assert ValueError("Insufficient funds.")
 
-#def test_transfer_between_accounts():
+"""
+def test_transfer_between_accounts():
+    try:
+        transfer = 100
+        acct = account_sevj.service_get_account_by_id(1)
+        acct.account_balance -= transfer
+        account_sevj.service_transfer_between_accounts(1, 1, 2, 100)
+        acct2 = account_sevj.service_get_account_by_id(2)
+        assert acct.account_balance == acct2.account_balance
+    except ValueError:
+        assert ValueError("Insufficient funds.")
+"""
