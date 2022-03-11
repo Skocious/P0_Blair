@@ -6,11 +6,8 @@ from dal_layer.customer_dal.customer_dao_imp import CustomerDAOImp
 from entities.account_class_info import Account
 from entities.customer_class_info import Customer
 from service_layer.account_services.account_service_imp import AccountServiceImp
-from service_layer.account_services.account_service_interface import AccountService
 from service_layer.customer_services.customer_service_imp import CustomerServiceImp
-from api_layer.dict_tool import customer_id_tool
-from api_layer.dict_tool import account_id_tool
-from api_layer.dict_tool import account_existing_balance
+
 
 app: Flask = Flask(__name__)  # passing __name__ as an argument lets the object know it should look for its info
 
