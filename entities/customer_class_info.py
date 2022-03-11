@@ -9,7 +9,7 @@ class Customer:
         self.customer_info = f"Customer Info: {self.first_name}, {self.last_name}, Customer ID#:{self.customer_id}"
 
     def cust_json_dictionary(self):
-        return {"Customer Info": self.customer_info,
-                "FirstName": self.first_name,
-                "LastName": self.last_name,
-                "CustomerID": self.customer_id}
+        return {
+                "firstName": self.first_name,
+                "lastName": self.last_name,
+                "customerID": self.customer_id}
