@@ -4,9 +4,6 @@ from service_layer.account_services.account_service_interface import AccountServ
 from dal_layer.account_dal.account_dao_interface import AccountDAOInterface
 
 
-# from tests.account_dao_tests.test_account_dao import account_dao
-
-
 class AccountServiceImp(AccountService):
 
     def __init__(self, account_dao: AccountDAOInterface):
@@ -58,11 +55,16 @@ class AccountServiceImp(AccountService):
         if deposit_amt < 0:
             raise ValueError("Deposit request can not be a negative number.")
         acct = self.service_get_account_by_id(account_id)
-        if deposit_amt > float(acct.account_balance):
-            raise ValueError("Insufficient funds.")
-        new_bal = float(acct.account_balance) - deposit_amt
+        new_bal = float(acct.account_balance) + deposit_amt
         acct.account_balance = new_bal
         return self.service_update_account(account_id)
 
     def service_transfer_between_accounts(self, customer_id, transfer_from_acct, deposit_to_acct, transfer_amt):
-        pass
+        if transfer_amt < 0:
+            raise ValueError("Invalid amount, can not transfer less than $0")
+        transfer_from_acct = self.account_dao.get_account_by_id(transfer_from_acct)
+        transfer1 = transfer_from_acct.account_balance - transfer_amt
+        transfer_from_acct.account_balance = transfer1
+        return self.account_dao.update_account_info_by_id(deposit_to_acct)
+
+

@@ -14,10 +14,8 @@ customer_daoj: CustomerDAOInterface = CustomerDAOImp()
 
 
 def test_get_all_cust_acct():
-
     account = account_sevj.service_get_all_accounts_cust_id(1)
     assert len(account) >= 1
-
 
 
 def test_get_cust_acct_by_cust_id():
@@ -44,6 +42,17 @@ def test_update_account_by_id():
         assert IdNotFound("Account ID not found, please try again.")
 
 
+def test_deposit_to_account():
+    try:
+        dep = 100
+        acct = account_sevj.service_get_account_by_id(1)
+        acct.account_balance += dep
+        account_sevj.service_deposit_to_account(1, 0)
+        acct2 = account_sevj.service_get_account_by_id(1)
+        assert acct.account_balance == acct2.account_balance
+    except IdNotFound:
+        assert IdNotFound("Account not found, please try again!")
+
 def test_remove_account_by_id():
     try:
         acct = account_daoj.delete_account_by_id(2)
@@ -63,3 +72,5 @@ def test_withdraw_from_account():
         assert acct.account_balance == acct2.account_balance
     except ValueError:
         assert ValueError("Insufficient funds.")
+
+#def test_transfer_between_accounts():
