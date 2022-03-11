@@ -8,7 +8,8 @@ class Account:
         self.account_owner = f"CustID: {self.customer_id}, AcctID: {self.account_id}, Acct Bal: {self.account_balance} "
 
     def accounts_json_dictionary(self):
-        return {"customerID": self.customer_id,
+        return {
                 "accountID": self.account_id,
                 "accountBalance": self.account_balance,
-                "accountInfo": self.account_owner}
+                "customerID": self.customer_id
+                }

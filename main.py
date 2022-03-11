@@ -56,15 +56,15 @@ def get_customer_by_id(customer_id):
         return jsonify(message), 400
 
 
+
 """
-fdgdfghd
-@app.route("/customer/<account_id>", methods=["POST"])
-def update_customer_by_id(account_id):
+@app.route("/account/<account_id>", methods=["POST"])
+def update_account_by_id():
     try:
         new_info: dict = request.get_json()
-        cust_id = new_info["customerID"]
-        outcome = account_service.service_update_account(cust_id)
-        outcome_dict = account_id_tool(outcome)
+        account = Account(new_info["accountID"], new_info["accountBalance"], new_info["customerID"])
+        outcome = account_service.service_update_account(account)
+        outcome_dict = accounts_json_dictionary(outcome)
         outcomejson = jsonify(outcome_dict)
         return outcomejson, 201
     except BadCustomerInfo as e:
@@ -77,9 +77,9 @@ def update_customer_by_id(account_id):
             "message": str(e)
         }
         return jsonify(message), 400
+
+
 """
-
-
 @app.route("/account/<account_id>", methods=["GET"])
 def get_account_info(account_id):
     try:
@@ -97,6 +97,8 @@ def get_account_info(account_id):
             "message": str(e)
         }
         return jsonify(message), 400
+
+
 
 
 app.run()
